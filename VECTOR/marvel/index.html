@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-tfR/d+Rz8pTTOzwkzgHuyDs4vI6I8tImyDP98ebh4Uuucb+pxrR2xGyrTm7bsc6umLX82He2Tm9lJ+H3seZgJw=="
+        crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+</head>
+<style>
+    .alert {
+        position: fixed;
+        top: 9%;
+        right: 1%;
+        background: #162b49;
+        color: #fff;
+        font-weight: 800;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        padding: 20px;
+        width: 200px;
+        line-height: 30px;
+        height: 100vh;
+        border-radius: 10px;
+        transform: translateX(150%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .alert .navigation1 {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        text-align: center;
+    }
+
+    .alert .navigation1 li a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .alert .navigation li a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .alert p {
+        margin: 30px;
+        letter-spacing: 1px;
+    }
+
+    .alert i {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 30px;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    header ul {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        gap: 10px;
+        list-style: none;
+    }
+
+    header.navigation li a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    header.navigation li a:hover {
+        border-bottom: 1px solid #fff;
+    }
+
+    header.hamburger {
+        display: none !important;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
+    @media(max-width:491px) {
+        header .hamburger {
+            display: block;
+        }
+    }
+
+    @media(max-width:991px) {
+        header .navigation {
+            display: none;
+        }
+    }
+
+    /* Add new styles for hamburger visibility */
+
+
+    /* Hide hamburger when tag is shown */
+    header .navigation.active+.hamburger {
+        display: none;
+    }
+
+    /* Show hamburger when display width is less */
+    @media(max-width:600px) {
+        header .hamburger {
+            display: block;
+        }
+    }
+
+
+
+    .social-menu ul li a {
+        margin: 5px;
+    }
+
+
+    .social-menu ul li a:hover .circular-icon {
+        transform: scale(1.2);
+        /* Increase the size of the icon on hover */
+        transition: transform 0.3s ease;
+        /* Add a smooth transition effect */
+    }
+
+    image .ggg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 220px;
+        width: 220px;
+    }
+
+    /*=============== GOOGLE FONTS ===============*/
+    @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+    /*=============== VARIABLES CSS ===============*/
+    :root {
+        --header-height: 3.5rem;
+
+        /*========== Colors ==========*/
+        /*Color mode HSL(hue, saturation, lightness)*/
+        --first-color: hsl(14, 98%, 50%);
+        --black-color: hsl(0, 0%, 0%);
+        --black-color-light: hsl(0, 0%, 40%);
+        --white-color: hsl(0, 0%, 95%);
+        --title-color: hsl(0, 0%, 0%);
+        --text-color: hsl(0, 0%, 35%);
+        --text-color-light: hsl(0, 0%, 64%);
+        --body-color: hsl(0, 0%, 87%);
+        --container-color: hsl(0, 0%, 83%);
+
+        /*========== Font and typography ==========*/
+        /*.5rem = 8px | 1rem = 16px ...*/
+        --body-font: "Bai Jamjuree", sans-serif;
+        --biggest-font-size: 2.5rem;
+        --h1-font-size: 1.75rem;
+        --h2-font-size: 1.25rem;
+        --h3-font-size: 1.125rem;
+        --normal-font-size: 0.938rem;
+        --small-font-size: 0.813rem;
+        --smaller-font-size: 0.75rem;
+
+        /*========== Font weight ==========*/
+        --font-regular: 400;
+        --font-medium: 500;
+        --font-semi-bold: 600;
+        --font-bold: 700;
+
+        /*========== z index ==========*/
+        --z-tooltip: 10;
+        --z-fixed: 100;
+    }
+
+    /*========== Responsive typography ==========*/
+    @media screen and (min-width: 1150px) {
+        :root {
+            --biggest-font-size: 4.5rem;
+            --h1-font-size: 3rem;
+            --h2-font-size: 1.5rem;
+            --h3-font-size: 1.25rem;
+            --normal-font-size: 1rem;
+            --small-font-size: 0.875rem;
+            --smaller-font-size: 0.813rem;
+        }
+    }
+
+    /*=============== BASE ===============*/
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: var(--body-font);
+        font-size: var(--normal-font-size);
+        background-color: var(--body-color);
+        color: var(--text-color);
+        transition: background-color 0.4s;
+        /* Pour le Dark theme */
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        color: var(--title-color);
+        font-weight: var(--font-bold);
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /*=============== THEME ===============*/
+    .nav__buttons {
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+    }
+
+    .change-theme {
+        font-size: 1.25rem;
+        color: var(--title-color);
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    /*=============== REUSABLE CSS CLASSES ===============*/
+    .container {
+        max-width: 1120px;
+        margin-inline: 1.5rem;
+    }
+
+    .grid {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .section {
+        padding-block: 4rem 2rem;
+    }
+
+    .section__title-1,
+    .section__title-2 {
+        position: relative;
+        font-size: var(--h1-font-size);
+        width: max-content;
+        margin: 0.75rem auto 2rem;
+    }
+
+    .section__title-1 span,
+    .section__title-2 span {
+        z-index: 5;
+        position: relative;
+    }
+
+    .section__title-1::after,
+    .section__title-2::after {
+        content: "";
+        width: 40px;
+        height: 28px;
+        background-color: hsla(14, 98%, 50%, 0.2);
+        position: absolute;
+        top: -4px;
+        right: -8px;
+    }
+
+    .section__title-2::after {
+        top: initial;
+        bottom: -4px;
+    }
+
+    .geometric-box {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: var(--first-color);
+        rotate: -30deg;
+    }
+
+    .geometric-box::after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border: 3px solid var(--black-color);
+        left: -5px;
+        top: -5px;
+    }
+
+    .main {
+        overflow: hidden;
+        /* For animation ScrollReveal */
+    }
+
+    /*=============== BUTTON ===============*/
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 0.5rem;
+    }
+
+    .button {
+        background-color: var(--black-color);
+        padding: 1.1rem 1.5rem;
+        color: var(--white-color);
+        font-weight: var(--font-medium);
+        border-radius: 0.75rem;
+        transition: background-color 0.4s;
+    }
+
+    .button i {
+        font-size: 1.25rem;
+    }
+
+    .button:hover {
+        background-color: var(--first-color);
+    }
+
+    /*=============== PROJECTS ===============*/
+
+
+    .projects__container {
+        row-gap: 2rem;
+    }
+
+
+    .projects {
+        background-image: linear-gradient(to top, #b9d6ea 0%, #e2ebf0 100%);
+    }
+
+    .projects__card {
+        background-color: rgb(219, 244, 251);
+        box-shadow: 1px 1px 25px -2px rgba(85, 123, 159, 0.993);
+        transition: box-shadow 0.3s ease;
+        width: 300px;
+        height: 470px;
+    }
+
+    .projects__card:hover {
+        box-shadow: 1px 1px 15px -2px rgb(200, 200, 200);
+    }
+
+    .projects__card {
+        margin-top: -30px;
+        margin-bottom: 20px;
+        padding: 1rem 1rem 2rem;
+        border-radius: 0.75rem;
+        transition: background-color 0.4s;
+    }
+
+    .projects__image {
+        position: relative;
+        margin-bottom: 0.75rem;
+    }
+
+    .projects__img {
+        border-radius: 0.75rem;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+    }
+
+    .projects__button {
+        position: absolute;
+        right: 1rem;
+        bottom: -1.5rem;
+        padding: 1rem;
+    }
+
+    .projects__content {
+        margin-bottom: 1.25rem;
+    }
+
+    .projects__subtitle {
+        position: relative;
+        display: inline-block;
+        font-size: var(--small-font-size);
+        font-weight: var(--font-medium);
+        color: var(--text-color);
+        margin-bottom: 0.75rem;
+        padding-left: 1.75rem;
+    }
+
+    .projects__subtitle::after {
+        content: "";
+        width: 20px;
+        height: 1px;
+        background-color: var(--text-color);
+        position: absolute;
+        left: 0;
+        top: 50%;
+    }
+
+    .projects__title {
+        font-size: var(--h3-font-size);
+        margin-bottom: 0.75rem;
+    }
+
+    .projects__link {
+        display: flex;
+        align-items: center;
+        color: var(--text-color);
+        font-size: var(--small-font-size);
+        font-weight: var(--font-medium);
+        transition: color 0.4s;
+    }
+
+    .projects__link i {
+        font-size: 1rem;
+        color: var(--title-color);
+        transition: color 0.4s;
+    }
+
+    .projects__link:hover,
+    .projects__link:hover i {
+        color: var(--first-color);
+    }
+
+    .projects__card:hover {
+        background-color: var(--white-color);
+        border-radius: 0.75rem;
+        box-shadow: rgba(43, 43, 43, 0.432) 0px 8px 24px;
+    }
+
+    /*=============== MEDIA QUERIES ===============*/
+    /* For small devices */
+    @media screen and (max-width: 340px) {
+        .container {
+            margin-inline: 1rem;
+        }
+    }
+
+    /* For medium devices */
+    @media screen and (min-width: 576px) {
+        .projects__container {
+            grid-template-columns: 350px;
+            justify-content: center;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .projects__container {
+            grid-template-columns: repeat(2, 350px);
+        }
+    }
+
+    /* For large devices */
+    @media screen and (min-width: 1150px) {
+        .container {
+            margin-inline: auto;
+        }
+
+        .section {
+            padding-block: 7rem 2rem;
+        }
+
+        .section__title-1::after,
+        .section__title-2::after {
+            width: 70px;
+            height: 48px;
+        }
+
+        .projects__container {
+            grid-template-columns: repeat(3, 352px);
+            padding-block: 3rem 1rem;
+        }
+
+        .projects__card {
+            padding: 1.25rem 1.25rem 2.5rem;
+        }
+
+        .projects__image {
+            margin-bottom: 1rem;
+        }
+
+        .projects__content {
+            margin-bottom: 2rem;
+        }
+
+        .projects__buttons {
+            right: 1.25rem;
+        }
+    }
+
+    .footer {
+        background-image: linear-gradient(to top, #aaf5f096 0%, #e4cff1c4 100%);
+        padding: 0;
+
+    }
+
+    .contact {
+        background-image: linear-gradient(to right, #bdeaf8 0%, #9face6 100%);
+    }
+
+    .projects {
+        background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);
+    }
+
+    .img1 {
+        height: 20px;
+        width: 20px;
+        border-radius: 60%;
+
+    }
+</style>
+
+<body>
+
+    <nav class="navbar">
+        <header class="max-width">
+            <div class="logo"><a href="#"><span>Vector</span><span>.com</span></a></div>
+            <ul class="navigation menu">
+                <li><a href="#home" class="menu-btn"><strong>Home</strong></a></li>
+                <li><a href="#about" class="menu-btn"><strong>About</strong></a></li>
+                <li><a href="#skills" class="menu-btn"><strong>Skills</strong></a></li>
+                <li><a href="#projects" class="menu-btn"><strong>Projects</strong></a></li>
+                <li><a href="#contact" class="menu-btn"><strong>Contact</strong></a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fa-solid fa-bars on" id="on"><img src="./images.png" alt="" class="img1"></i>
+            </div>
+            <div class="alert">
+                <ul class="navigation1">
+                    <i class='bx bxs-x-circle close'></i>
+                    <li><a href="#home" class="menu-btn"><strong>Home</strong></a></li>
+                    <li><a href="#about" class="menu-btn"><strong>About</strong></a></li>
+                    <li><a href="#skills" class="menu-btn"><strong>Skills</strong></a></li>
+                    <li><a href="#projects" class="menu-btn"><strong>Projects</strong></a></li>
+                    <li><a href="#contact" class="menu-btn"><strong>Contact</strong></a></li>
+                </ul>
+                </i>
+            </div>
+        </header>
+    </nav>
+    <!-- Home -->
+    <section class="home" id="home">
+        <div class="max-width">
+            <div class="home-content">
+                <div class="text-1">Hello, This is</div>
+                <div class="text-2">Vishal Malviya </div>
+                <div class="text-3">And I'm a <p> MERN Stack DEV</p>
+                </div>
+                <a href="./regi.html">Sign Up</a>
+            </div>
+        </div>
+    </section>
+
+    <!--  About  -->
+    <section class="about" id="about">
+        <div class="max-width">
+            <h2 class="title">About Me</h2>
+            <div class="about-content">
+                <div class="column left">
+                    <img src="https://i.pinimg.com/736x/ab/10/d6/ab10d644d3d270e8121ad01d2a5f6ac9.jpg"
+                        alt="Profile Image 626x626">
+                </div>
+                <div class="column right">
+                    <div class="text">I'm Vishal and I'm a <span class="typing-2"></span></div>
+                    <p>MERN stack developer, skilled in building web applications using MongoDB, Express.js, React, and
+                        Node.js. Your expertise lies in creating dynamic and interactive user experiences by combining
+                        these technologies..</p>
+                    <br>
+                    <div class="text">Why Work With Me</div>
+                    <p>I'm a great communicator & love to invest the necessary time to understand the customer's
+                        problem very well.</p>
+
+                    <a href="#link" target="blank">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills" id="skills">
+        <div class="max-width">
+            <h2 class="title">My Skills</h2>
+            <div class="skills-content">
+                <div class="column left">
+
+                    <div class="text">INTERNSHIP</div>
+                    <p>
+                        <li class="intern">#Company Name "Where You work"</li>
+                        <li class="intern">#Company Name "Where You work"</li>
+                        <li class="intern">#Company Name "Where You work"</li>
+                    </p>
+
+                    <br>
+                    <div class="text">PROJECT</div>
+
+                    <p>
+                        <li class="project">Portfolio (HTML, CSS, js, Bootstraps)</li>
+                        <li class="project">eCommerce Website (Shopify liquid-code, HTML, CSS)</li>
+                        <li class="project">QuickShop - eCommerce Website (Like Amazon, Flipkart etc.)</li>
+                        <li class="project">Fully Responsive Design Email Subscribe form</li>
+                        <li class="project">Pinterest (Mongodb, Express, React, Nodejs)</li>
+                        <li class="project">Currently Working on a Messaging App (Like WhatsApp)</li>
+                    </p>
+
+                    <br>
+                    <div class="text">DEVELOPMENT SKILLS</div>
+
+                    <p>
+                        I'm familiar with MERN stack development, proficient in MongoDB, Express.js, React, and Node.js.
+                        As a MERN stack developer, I specialize in crafting dynamic web applications.
+                    </p>
+                    <a href="https://aistechx.com/" target="blank">Get Educate...</a>
+                </div>
+                <div class="column right">
+                    <div class="bars">
+                        <div class="info">
+                            <span>MERN</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="line python"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>HTML</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="line html"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>CSS</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="line css"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>JavaScript</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="line js"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>Bootstraps</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="line bootstraps"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>Tailwind CSS</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="line django"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects" id="projects">
+
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+        <h2 class="title">Projects.</h2>
+
+        <div class="projects__container container grid">
+            <article class="projects__card">
+                <div class="projects__image">
+                    <img src="https://images.unsplash.com/photo-1592417817038-d13fd7342605?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTI3NjU5NTV8&ixlib=rb-4.0.3&q=85"
+                        alt="image" class="projects__img">
+
+                    <a href="#" class="projects__button button">
+                        <i class="ri-arrow-right-up-line"></i>
+                    </a>
+                </div>
+
+                <div class="projects__content">
+                    <h3 class="projects__subtitle">Website</h3>
+                    <h2 class="projects__title">Restaurant Website</h2>
+
+                    <p class="projects__description">
+                        Project that you carry out in the design
+                        and structure of the layout, showing the
+                        design at the client's request.
+                    </p>
+                </div>
+
+                <div class="projects__buttons">
+                    <a href="https://github.com/" target="_blank" class="projects__link">
+                        <i class="ri-github-line"></i> Source Code
+                    </a>
+
+                    <a href="https://dribbble.com/" target="_blank" class="projects__link">
+                        <i class="ri-dribbble-line"></i> View
+                    </a>
+                </div>
+            </article>
+            <article class="projects__card">
+                <div class="projects__image">
+                    <img src="https://images.unsplash.com/photo-1491172700640-4f1a131a3670?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTI3NjY2ODV8&ixlib=rb-4.0.3&q=85"
+                        alt="image" class="projects__img">
+                    <!--   -------------------           give link to redirect --------------- -->
+                    <a href="https://webgradients.com/" class="projects__button button">
+                        <i class="ri-arrow-right-up-line"></i>
+                    </a>
+                </div>
+
+                <div class="projects__content">
+                    <h3 class="projects__subtitle">App</h3>
+                    <h2 class="projects__title">Yoga App</h2>
+
+                    <p class="projects__description">
+                        Project that you carry out in the design
+                        and structure of the layout, showing the
+                        design at the client's request.
+                    </p>
+                </div>
+
+                <div class="projects__buttons">
+                    <a href="https://github.com/" target="_blank" class="projects__link">
+                        <i class="ri-github-line"></i> Source Code
+                    </a>
+
+                    <a href="https://dribbble.com/" target="_blank" class="projects__link">
+                        <i class="ri-dribbble-line"></i> View
+                    </a>
+                </div>
+            </article>
+            <article class="projects__card">
+                <div class="projects__image">
+                    <img src="https://images.unsplash.com/photo-1515560570411-00a0026e6086?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTI3NjY2MDJ8&ixlib=rb-4.0.3&q=85"
+                        alt="image" class="projects__img">
+
+                    <a href="#" class="projects__button button">
+                        <i class="ri-arrow-right-up-line"></i>
+                    </a>
+                </div>
+
+                <div class="projects__content">
+                    <h3 class="projects__subtitle">Website</h3>
+                    <h2 class="projects__title">Coffee Delivery Website</h2>
+
+                    <p class="projects__description">
+                        Project that you carry out in the design
+                        and structure of the layout, showing the
+                        design at the client's request.
+                    </p>
+                </div>
+
+                <div class="projects__buttons">
+                    <a href="https://github.com/" target="_blank" class="projects__link">
+                        <i class="ri-github-line"></i> Source Code
+                    </a>
+
+                    <a href="https://dribbble.com/" target="_blank" class="projects__link">
+                        <i class="ri-dribbble-line"></i> View
+                    </a>
+                </div>
+            </article>
+        </div>
+
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="max-width">
+            <h2 class="title">Contact Me</h2>
+            <div class="contact-content">
+                <div class="column left">
+                    <div class="text">Get in Touch</div>
+                    <p>Feel free to get in touch with me. I am always open to discussing new projects, creative
+                        ideas or opportunities to be a part of your visions. Email me with any questions or
+                        inquiries. I'll happy to answer your questions and set up a meeting with you.</p>
+                    <div class="icons">
+
+                        <a href="https://instagram.com/aistscience">
+                            <div class="row">
+                                <i class="fa-solid fa-user-large"></i>
+                                <div class="info">
+                                    <div class="head">Name</div>
+                                    <div class="sub-title"><a href="https://aistechx.com/"
+                                            style="text-decoration: none; color: #333;"> Vishal Malviya</a></div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="row">
+                            <i class="fas fa-location-dot"></i>
+
+                            <div class="info">
+                                <div class="head">&nbsp;Address</div>
+                                <div class="sub-title">&nbsp;ABC, 123 Lane, India</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div class="info">
+                                <div class="head">Email</div>
+                                <div class="sub-title"><a href="mailto:#" style="text-decoration: none; color: #333;">
+                                        example@example.com</a></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <i class="bi bi-translate"></i>
+                            <div class="info">
+                                <div class="head">Language Known</div>
+                                <div class="sub-title">Hindi, English, japanese </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <!-- Social -->
+
+                    </div>
+                </div>
+
+                <!-- Reach -->
+                <div class="column right">
+                    <div class="text">Message me</div>
+                    <form action="#">
+                        <div class="fields">
+                            <div class="field name">
+                                <input type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="field email">
+                                <input type="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="text" placeholder="Subject" required>
+                        </div>
+                        <div class="field textarea">
+                            <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+                        </div>
+                        <div class="button-area">
+                            <button type="submit">Send message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+        <div class="justify-center items-center flex">
+            <div class="container">
+                <div class="w-full py-10 px-4 sm:px-6 lg:px-8 lg:pt-20">
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <div class="col-span-full lg:col-span-2">
+                            <div class="flex items-center">
+
+                            </div>
+                            <p class=" mt-6">Vector3 is a social development environment. At its heart, it
+                                allows you to write code in the browser, and see the results of it as you build.</p>
+                        </div>
+                        <div class="col-span-1">
+                            <h4 class="font-semibold  uppercase">Product</h4>
+                            <div class="mt-6 grid space-y-3">
+                                <p><a class="inline-flex gap-x-2  " href="#">Services</a>
+                                </p>
+                                <p><a class="inline-flex gap-x-2 " href="#">About
+                                        Us</a></p>
+                                <p><a class="inline-flex gap-x-2 " href="#">News &
+                                        Stories</a></p>
+
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <h4 class="font-semibold  uppercase">Important Links</h4>
+                            <div class="mt-6 grid space-y-3">
+                                <p><a class="inline-flex gap-x-2 " href="#">Our
+                                        Journeys</a></p>
+                                <p><a class="inline-flex gap-x-2 " href="#">Roadmap</a>
+                                </p>
+                                <p><a class="inline-flex gap-x-2 " href="#">Pricing
+                                        Plans</a></p>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <h4 class="font-semibold uppercase">Downloads</h4>
+                            <div class="mt-6 grid space-y-3">
+                                <img src="https://i.postimg.cc/43nhk9y7/store.png" class="h-12" alt="">
+                                <img src="https://i.postimg.cc/VkKbVRfP/google.png" class="h-12" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 sm:mt-12 grid gap-y-2 sm:gap-y-0 sm:flex sm:justify-between sm:items-center">
+                        <div class="flex justify-between items-center">
+                            <p class="text-md">
+                                <span style="padding-left:3px;"><a href="https://vector3.odoo.com/">VECTOR3</a></span>
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> - Terms Conditions & Policy.All Rights
+                                Reserved.
+                            </p>
+
+                        </div>
+
+                        <div class="social-menu">
+                            <ul style="display: flex;">
+                                <li><a href="#"><i class="fab fa-facebook-f circular-icon facebook-icon"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                                            </svg></i></a></li>
+
+                                <li><a href="#"><i class="bi bi-twitter-x circular-icon twitter-icon"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                                            </svg>
+                                        </i></a></li>
+
+                                <li><a href="#"><i class="fab fa-instagram circular-icon instagram-icon"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                                            </svg></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin circular-icon linkedin-icon"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+                                            </svg></i></a></li>
+
+                                <li><a href="#"><i class="fas fa-youtube circular-icon youtube-icon"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z" />
+                                            </svg></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $(".on").click(function () {
+                $('.alert').css({
+                    'transform': 'translateX(0)',
+                });
+            });
+
+            $(".close").click(function () {
+                $('.alert').css({
+                    'transform': 'translateX(150%)',
+                });
+            });
+
+            $(".out").click(function () {
+                $('.alert').css({
+                    'transform': 'translateX(150%)',
+                });
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>
